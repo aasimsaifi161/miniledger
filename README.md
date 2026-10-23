@@ -143,3 +143,6 @@ miniledger/
 
 - **Phone Number**: Any valid 10-digit number (e.g. `9876543210`)
 - **OTP**: Use `654321` (default static code in development)
+
+## DEMO VIDEO :
+- **GOOGLE DRIVE LINK** : https://drive.google.com/drive/folders/1-oEUugLOU--AfFgOtqUSCJgKohQFN-KG 
