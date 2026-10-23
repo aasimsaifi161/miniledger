@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  phone     String   @unique
+  createdAt DateTime @default(now())
+  loans     Loan[]
+}
+
+model Otp {
+  id        String   @id @default(uuid())
+  phone     String   @unique
+  codeHash  String
+  expiresAt DateTime
+  attempts  Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+model Loan {
+  id          String    @id @default(uuid())
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  friendName  String
+  amount      Int
+  dueDate     DateTime
+  isRepaid    Boolean   @default(false)
+  repaidAt    DateTime?
+  receiptPath String?
+  createdAt   DateTime  @default(now())
+
+  @@index([userId, dueDate])
+}
